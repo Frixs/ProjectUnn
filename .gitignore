@@ -57,3 +57,7 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+*.meta
+*.meta
+*.meta
+Assets/MOBA and Tower Defense.meta
