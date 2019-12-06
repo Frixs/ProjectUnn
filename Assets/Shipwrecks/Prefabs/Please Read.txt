@@ -1,0 +1,12 @@
+The prefabs in this folder are intended to be used with my other spaceships, e.g. Berlin Class 
+Battlecruiser or Hindenburg Class Battleship.
+
+These capital ships are ca. 2 unity unit big. The prefabs of the derelict ships and parts are 
+therefore smaller than two unity units.
+
+If you want to use the derelict ships and parts separately you should use the prefabs in the folder: 
+
+			"PrefabsUnityDimensions"
+
+The prefabs in the above mentioned folder are scaled bigger so that the derelict ships and parts are 2 unity 
+units big.
