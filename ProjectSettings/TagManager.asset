@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Projectile
   - ProjectileSpawn
+  - Arrow
+  - GameManager
   layers:
   - Default
   - TransparentFX

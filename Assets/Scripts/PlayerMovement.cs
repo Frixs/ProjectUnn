@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput playerInput;
     private AnimationController animationController;
     private PlayerController playerController;
-
+    [SerializeField] private Transform PlayerCenter;
     // Calculates direction and move velocity
     public Vector3 lookPos;
     private Vector3 moveInput;
@@ -65,11 +65,12 @@ public class PlayerMovement : MonoBehaviour
             }
             Vector3 lookDir = lookPos - transform.position;
             lookDir.y = 0;
-        
-                
-            
-    
-            transform.LookAt(transform.position + lookDir, Vector3.up);
+       
+
+
+
+        transform.LookAt(transform.position + lookDir, Vector3.up);
+        //transform.rotation *= Quaternion.Euler(0, 45, 0);
        
        
         if (canMove)
