@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DamagePopup : MonoBehaviour
 {
     private const float DISAPPEAR_TIMER_MAX = 0.5f;
     private Color color;
-    private TextMeshProUGUI textMesh;
+    private Text textMesh;
     private float disappearTimer;
     private float disappearSpeed = 4f;
     private Vector3 spawnPosition;
@@ -24,13 +24,13 @@ public class DamagePopup : MonoBehaviour
     private static int sortingOrder;
     private void Awake()
     {
-        textMesh = GetComponentInChildren<TextMeshProUGUI>();
+        textMesh = GetComponentInChildren<Text>();
         color = textMesh.color;
         disappearTimer = DISAPPEAR_TIMER_MAX;
     }
    public void Setup(int damageAmount, Vector3 spawn, bool isCrit, bool isHeal, Color PopupColor)
     {
-        textMesh.SetText(damageAmount.ToString());
+        textMesh.text = damageAmount.ToString();
         if (!isCrit)
         {
             //Normal

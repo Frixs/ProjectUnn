@@ -18,5 +18,4 @@ MonoBehaviour:
   Duration: 10
   Element: 3
   MaxCritStacks: 5
-  CritStacks: 0
-  PercentPerStack: 3
+  PercentPerStack: 10
