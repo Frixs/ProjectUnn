@@ -17,7 +17,6 @@ public class AnimationController : MonoBehaviour
      */
 
     public Animator animator;
-    public GameObject Bullet;
 
 
     // Start is called before the first frame update
@@ -57,20 +56,7 @@ public class AnimationController : MonoBehaviour
     private void AnimationStart()
     {
     }
-    private void Shoot()
-    {
-        Transform spawn = GameObject.FindGameObjectWithTag("ProjectileSpawn").transform;
-        GameObject g= Instantiate(Bullet, spawn.position, Quaternion.identity);
-
-        var mousePos = Input.mousePosition;
-        mousePos.z = 13; // select distance = 10 units from the camera
-        Vector3 mPos = Camera.main.ScreenToWorldPoint(mousePos);
-        spawn.LookAt(mPos);
-       
-        g.GetComponent<Rigidbody>().AddForce(transform.forward * 750);
-
-        
-    }
+ 
     private void AnimationEnd ()
     {
 

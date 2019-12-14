@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647edb585cafa9549bcf8cf07c5487e7, type: 3}
+  m_Name: CriticalDebuff
+  m_EditorClassIdentifier: 
+  DebuffIndicatorPrefab: {fileID: 7461295427169868013, guid: 8ecc85176bd33f34e9c537d0ce47f367,
+    type: 3}
+  Name: CriticalDebuff
+  Duration: 10
+  Element: 3
+  MaxCritStacks: 5
+  CritStacks: 0
+  PercentPerStack: 3

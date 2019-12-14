@@ -16,11 +16,12 @@ public class PlayerInput : MonoBehaviour
     //Mouse Y Position
     public float MouseY { get; private set; }
     //Left Mouse Button
-    public bool Action { get; private set; }
+    public bool Shoot { get; private set; }
     //Roll Button
     public bool Roll { get; private set; }
 
-   
+    public bool Menu { get; private set; }
+    public bool MenuRelease { get; private set; }
     public void Awake()
     {
         Instance = this;
@@ -32,7 +33,9 @@ public class PlayerInput : MonoBehaviour
         Vertical = Input.GetAxisRaw("Vertical");
         MouseX = Input.GetAxis("Mouse X");
         MouseY = Input.GetAxis("Mouse Y");
-        Action = Input.GetMouseButton(0);
+        Shoot = Input.GetMouseButton(0);
+        Menu = Input.GetMouseButton(1);
+        MenuRelease = Input.GetMouseButtonUp(1);
         Roll = Input.GetKeyDown(KeyCode.Space);
     }
 }
