@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float DebugAttackSpeed;
     [SerializeField] public List<Stat> stats;
     private float attackSpeedTimer = float.MaxValue;
+    public PlayerHealth playerHealth;
     /*
      * Public Variables
      */
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
         playerInput = PlayerInput.Instance;
         playerMovement = GetComponent<PlayerMovement>();
         animationController = GetComponent<AnimationController>();
+       
     }
 
     private void Start()
@@ -83,6 +85,7 @@ public class PlayerController : MonoBehaviour
         attackSpeedTimer += Time.deltaTime;
 
     }
+ 
 
     [System.Serializable]
     public class Stat

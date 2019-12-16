@@ -17,10 +17,5 @@ public class CritStatusEffect : BaseStatusEffect
         return CS;
 
     }
-    public override void OnRemoveEffect(GameObject debuffSpawn)
-    {
-        base.OnRemoveEffect(debuffSpawn);
-        
-    }
 
 }

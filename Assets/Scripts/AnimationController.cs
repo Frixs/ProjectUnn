@@ -25,6 +25,7 @@ public class AnimationController : MonoBehaviour
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         playerController = GetComponent<PlayerController>();
+        
     }
 
     //Returns true if Animator is playing an animation

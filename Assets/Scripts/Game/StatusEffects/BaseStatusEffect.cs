@@ -20,6 +20,10 @@ public class BaseStatusEffect : ScriptableObject
     {
         return 0;
     }
+    public virtual void OnHitEffect_NormalArrow()
+    {
+
+    }
     public virtual void UpdateEffect(float currentDuration)
     {
        
