@@ -24040,6 +24040,7 @@ GameObject:
   - component: {fileID: 4785882182081648}
   - component: {fileID: 114160357295214392}
   - component: {fileID: 114806208731045012}
+  - component: {fileID: 8150602348786688779}
   m_Layer: 0
   m_Name: ShotEffect
   m_TagString: Arrow
@@ -24091,6 +24092,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxParticles: 15000
   MaxParticlesForAllEffects: 20000
+--- !u!114 &8150602348786688779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561151204211774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9745cf10dfdde840acb2ad3967ef209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Element: 2
+  Effect: {fileID: 11400000, guid: e11c5f47b1c87ae4e806015d4e7a95d5, type: 2}
 --- !u!1 &1594555777426774
 GameObject:
   m_ObjectHideFlags: 0

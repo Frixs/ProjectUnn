@@ -4,21 +4,50 @@ using System.Collections.Generic;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;
-    public float smoothSpeed = 0.125f;
-    public Vector3 offset;
+   
 
-    public Vector3 lookPos;
-    private void Update()
+    public Vector3 defaultOffset;
+    private Camera cam;
+    private Vector3 offsetForOffset;
+    public float maxDistance;
+    public float scaleFactor;
+
+    public Transform lookAt;
+
+    private bool smooth = true;
+    private float smoothSpeed = 2f;
+    public Vector3 offset = new Vector3(0, 10, -5);
+    private void Start()
     {
-        transform.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        cam = Camera.main;
     }
     private void LateUpdate()
     {
-        Vector3 desiredPosition = target.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
-        transform.position = desiredPosition;
 
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            offsetForOffset = (hit.point - lookAt.position) * scaleFactor;
+        }
+        else
+            offsetForOffset = Vector3.zero; 
+        if (offsetForOffset.magnitude > maxDistance)
+        {
+            offsetForOffset.Normalize(); 
+            offsetForOffset = offsetForOffset * maxDistance;
+        }
+        offset = defaultOffset + offsetForOffset;
+
+        Vector3 desiredPosition = lookAt.transform.position + offset;
+
+        if (smooth)
+        {
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        }
     }
+
+
+
 
 }

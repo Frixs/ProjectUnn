@@ -8,6 +8,10 @@ TagManager:
   - ProjectileSpawn
   - Arrow
   - GameManager
+  - Debuff_Lightning
+  - Debuff_Fire
+  - Debuff_Water
+  - Debuff_Ice
   layers:
   - Default
   - TransparentFX

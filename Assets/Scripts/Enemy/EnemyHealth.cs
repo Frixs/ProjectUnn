@@ -9,28 +9,21 @@ public class EnemyHealth : MonoBehaviour
     public static event Action<EnemyHealth> OnHealthAdded = delegate { };
     public static event Action<EnemyHealth> OnHealthRemoved = delegate { };
     public GameObject debuffSpawn;
-    private const float DUMMY_REST = 3f;
     public int MaxHealth;
     public int Hp;
+    public int Damage;
     public BaseEnemy stats;
 
     public event Action<int, int, int, bool, bool, Color> OnHealthChanged = delegate { };
 
-    public int dmg = 1;
-    public int chance = 1;
-    private WaveSpawner spawner;
+    public WaveSpawner spawner;
     
-    private void OnEnable()
-    {
-        spawner = GameObject.FindGameObjectWithTag("GameManager").GetComponent<WaveSpawner>();
-         stats = spawner.GetRandomEnemyType();
-         MaxHealth = spawner.CurrentWave.Number * stats.BaseHealthPerLevel;
-        
-        Hp = MaxHealth;
-       
-    }
+
     private void Start()
     {
+        MaxHealth = stats.BaseHealth + (spawner.CurrentWave * stats.HealthPerLevel);
+        Hp = MaxHealth;
+        Damage = stats.BaseDamage + (spawner.CurrentWave * stats.DamagePerLevel);
         OnHealthAdded(this);
     }
     public void HealDamage(int amount, bool isCrit)
@@ -49,8 +42,13 @@ public class EnemyHealth : MonoBehaviour
         OnHealthChanged(Hp, MaxHealth, amount, isCrit, false, PopupColor); 
         if (Hp <= 0)
         {
-           spawner.RemoveEnemy();
-           Destroy(this.gameObject); 
+            spawner.EndRound();
+            foreach (var s in GetComponent<Enemy>().StatusEffects)
+            {
+                s.Value.DealDamage -= GetComponent<EnemyHealth>().TakeDamage;
+            }
+
+            Destroy(this.gameObject); 
         }
     }
     private void Update()

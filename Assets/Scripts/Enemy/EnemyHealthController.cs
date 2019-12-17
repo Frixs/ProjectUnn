@@ -19,6 +19,7 @@ public class EnemyHealthController : MonoBehaviour
         if (healthBars.ContainsKey(health) == false)
         {
             var hb = Instantiate(healthBarPrefab, transform);
+            hb.transform.SetAsFirstSibling();
             health.debuffSpawn = hb.GetComponent<EnemyHealthBar>().DebuffSpawn;    
             healthBars.Add(health, hb);
             hb.SetHealth(health);

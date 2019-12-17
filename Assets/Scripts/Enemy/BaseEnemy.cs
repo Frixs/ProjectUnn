@@ -5,9 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Enemy/Base Enemy")]
 public class BaseEnemy : ScriptableObject 
 {
-    public int BaseHealthPerLevel;
-    public int BasePhysicalDamagePerLevel;
-    public float BaseArmorChancePerLevel;
-    public float BaseAttackSpeed;
+    public int BaseHealth;
+    public int BaseDamage;
+    public int HealthPerLevel;
+    public int DamagePerLevel;
+
 
 }
