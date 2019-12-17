@@ -13,9 +13,11 @@ public class DoTStatusEffect : BaseStatusEffect
     public float TicksPerSecondScaling;
 
     private float tickCounter = 0;
-    public override void UpdateEffect(float currentDuration)
+    public override void UpdateEffect(float currentDuration, GameObject debuffSpawn)
     {
-        base.UpdateEffect(currentDuration);
+      
+        base.UpdateEffect(currentDuration, debuffSpawn);
+        if (currentDuration <= 0) return;
         tickCounter += Time.deltaTime;
         float ticksPerSecond = TicksPerSecondFlat;
         float timeBetweenTicks = (1 / ticksPerSecond); 
@@ -23,7 +25,7 @@ public class DoTStatusEffect : BaseStatusEffect
          if (tickCounter > timeBetweenTicks)
         {
             Debug.Log("Tick");
-            DealDamage(TickDamageFlat, false, Color.red); 
+            DealDamage(TickDamageFlat + Mathf.RoundToInt(GameAssets.I.player.GetStat("FireEff")), false, Color.red); 
             tickCounter = 0;
         }
     }

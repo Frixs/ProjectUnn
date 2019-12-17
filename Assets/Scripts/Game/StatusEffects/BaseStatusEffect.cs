@@ -20,17 +20,33 @@ public class BaseStatusEffect : ScriptableObject
     {
         return 0;
     }
+    public virtual void OnHitEffect()
+    {
+
+    }
     public virtual void OnHitEffect_NormalArrow()
     {
 
     }
-    public virtual void UpdateEffect(float currentDuration)
+    public virtual void UpdateEffect(float currentDuration, GameObject debuffSpawn)
     {
+        
+        if (currentDuration <= 0 || DebuffIndicator == null)
+        {
+            OnRemoveEffect(debuffSpawn);
+        }
+        else
+        {
+            DebuffIndicator.transform.GetChild(0).GetComponent<Image>().fillAmount = (currentDuration / Duration);
+        }
        
-        DebuffIndicator.transform.GetChild(0).GetComponent<Image>().fillAmount = (currentDuration / Duration);
+      
     }
     public virtual void OnRemoveEffect(GameObject debuffSpawn)
     {
-        Destroy(debuffSpawn.transform.GetChild(0).gameObject);
+       
+        GameObject g =GameObject.FindGameObjectWithTag("Debuff_" + Element.ToString());
+        Debug.Log(g);
+        Destroy(g);
     }
 }

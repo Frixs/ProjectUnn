@@ -6,74 +6,62 @@ using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Image timeUntilWaveBar;
-    public Text waveText;
 
-    public Wave CurrentWave;
-    private int EnemyCounter = 0;
+
+    public int CurrentWave;
 
     [SerializeField] private Collider spawnPlane;
-    public List<BaseEnemy> EnemyTypes;
-    public GameObject TestEnemy;
-    // Start is called before the first frame update
-    void Start()
-    {
-        CurrentWave = new Wave(1, 1, false);
-        UpdateText();
-    }
+    public List<GameObject> EnemyTypes;
+    public bool isInRound = false;
+    public Transform[] SpawnPoints;
 
+    // Start is called before the first frame update
     // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if(Input.GetKeyUp(KeyCode.Space))
-        {
-            StartSpawning();
-        }
+        StartRound();
+        CurrentWave = 1;
     }
-    private void UpdateText()
+    public void EndRound()
     {
-        // waveText.text = "Wave " + CurrentWave.Number + "\n" + CurrentWave.numOfEnemies + "/" + CurrentWave.maxEnemies; 
+        isInRound = false;
+        GameObject levelPanel = PanelController.Instance.ShowPanel("Level");
+        int baseExpGain = CurrentWave;
+        int expGain = Mathf.RoundToInt(baseExpGain + baseExpGain * (GameAssets.I.player.Accuracy / 100));
+        levelPanel.transform.GetChild(2).GetComponent<Text>().text = "Exp Gained:\n+" + baseExpGain + " * " + GameAssets.I.player.Accuracy.ToString("0.0") + "% Accuracy = " + expGain;
+        GameAssets.I.player.AddExp(expGain);
+        GameAssets.I.player.ResetQuiver();
+        CurrentWave++;
+
     }
-    
-    public void RemoveEnemy()
+    public void StartRound()
     {
-        CurrentWave.numOfEnemies--;
-        if (CurrentWave.numOfEnemies <= 0)
-        {
-            NextWave();
-        }
-        UpdateText();
-    }
-    public void StartSpawning()
-    {
-        Debug.Log("SPAWNING");
-        if(CurrentWave.hasStarted )
-        {
-            return;
-        }
-        else
-        {
-            CurrentWave.hasStarted = true;
-            StartCoroutine(Spawn());
-        }
         
+        isInRound = true;
+        GameAssets.I.player.ArrowsHit = 0;
+        GameAssets.I.player.ArrowsShot = 0;
+        GameAssets.I.player.Accuracy = 0;
+        PanelController.Instance.CloseAllPanels();
+        StartCoroutine(Spawn());
         
     }
-    private IEnumerator Spawn()
+    private IEnumerator Spawn() 
     {
         float delay = 1f;
-        for (int i = 0; i < CurrentWave.numOfEnemies; i++)
-        {
-            GameObject enemy = Instantiate(TestEnemy, GetRandomPos(), Quaternion.identity);
-            yield return new WaitForSeconds(delay);
-        }
+        yield return new WaitForSeconds(delay);
+        GameObject enemy = Instantiate(GetRandomEnemyType(), GetRandomSpawn());
+        enemy.GetComponent<EnemyHealth>().spawner = this;
+    }
+    private Transform GetRandomSpawn()
+    {
+        return SpawnPoints[Random.Range(0, SpawnPoints.Length)];
     }
     private Vector3 GetRandomPos()
     {
         int side = Random.Range(0, 3);
         
         float x = 0;
-        float y = 1;
+        float y = 0;
         float z = 0;
         switch (side)
         {
@@ -98,35 +86,10 @@ public class WaveSpawner : MonoBehaviour
         return new Vector3(x, y, z);
         
     }
-    public BaseEnemy GetRandomEnemyType()
+    public GameObject GetRandomEnemyType()
     {
         return EnemyTypes[Random.Range(0, EnemyTypes.Count)];
     }
-    private void NextWave ()
-    {
-        int num = CurrentWave.Number + 1;
-        int noE = 1 + Mathf.RoundToInt(num / 3) + EnemyCounter;
-        EnemyCounter++;
-        if (num % 5 == 0) EnemyCounter = 0;
-        CurrentWave = new Wave(num, noE, (num % 10 == 0));
-        UpdateText();
-    }
-         
-    public class Wave
-    {
-        public int Number;
-        public bool hasStarted;
-        public int numOfEnemies;
-        public bool bossWave;
-        public readonly int maxEnemies;
-        public Wave(int num, int noE, bool boss)
-        {
-            Number = num;
-            hasStarted = false;
-            numOfEnemies = noE;
-            maxEnemies = numOfEnemies;
-            bossWave = boss;
-            
-        }
-    }
+   
+    
 }

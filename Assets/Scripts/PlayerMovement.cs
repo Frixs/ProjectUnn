@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -42,6 +43,13 @@ public class PlayerMovement : MonoBehaviour
 
     public bool canMove = true;
 
+    public int MaxRollCharges;
+    private int NumOfRolls;
+    public float MaxRollRecharge;
+    private float CurrentRollRecharge;
+    public float RollRechargeRate;
+    [SerializeField] private Image RollImage;
+    [SerializeField] private Text RollTxt;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,6 +58,10 @@ public class PlayerMovement : MonoBehaviour
         camTransform = Camera.main.transform;
         playerController = GetComponent<PlayerController>();
         rollSpeed = speed * 2;
+        NumOfRolls = MaxRollCharges;
+        CurrentRollRecharge = 0;
+        RollRechargeRate = 0;
+        UpdateRollUI();
     }
     // Update is called once per frame
     void Update()
@@ -66,9 +78,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 lookDir = lookPos - transform.position;
             lookDir.y = 0;
        
-
-
-
         transform.LookAt(transform.position + lookDir, Vector3.up);
         //transform.rotation *= Quaternion.Euler(0, 45, 0);
        
@@ -82,14 +91,36 @@ public class PlayerMovement : MonoBehaviour
         {
             moveVelocity = Vector3.zero;
         }
-        if (PlayerInput.Instance.Roll && !isRolling)
+        if (PlayerInput.Instance.Roll && CanRoll())
         {
             if (moveInput.magnitude.Equals(0)) return;
                 isRolling = true;
             animationController.animator.SetTrigger("Roll");
+            NumOfRolls--;
+        }
+         
+        if (NumOfRolls < MaxRollCharges)
+        {
+            CurrentRollRecharge += Time.deltaTime + (Time.deltaTime * RollRechargeRate);
+             if (CurrentRollRecharge > MaxRollRecharge)
+            {
+                NumOfRolls++;
+                CurrentRollRecharge = 0;
+            }
+            UpdateRollUI();
         }
 
 
+    }
+    private void UpdateRollUI()
+    {
+        RollImage.fillAmount = CurrentRollRecharge / MaxRollRecharge;
+        RollTxt.text = NumOfRolls.ToString();
+        
+    }
+    private bool CanRoll()
+    {
+        return NumOfRolls > 0 && !isRolling;
     }
     private void RollEnd()
     {

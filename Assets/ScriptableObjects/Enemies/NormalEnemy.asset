@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f7c0471edb03eb43bc83e624f9e7c58, type: 3}
   m_Name: NormalEnemy
   m_EditorClassIdentifier: 
-  BaseHealthPerLevel: 100
-  BasePhysicalDamagePerLevel: 0
-  BaseArmorChancePerLevel: 0
-  BaseAttackSpeed: 0
+  BaseHealth: 20
+  BaseDamage: 10
+  HealthPerLevel: 20
+  DamagePerLevel: 10

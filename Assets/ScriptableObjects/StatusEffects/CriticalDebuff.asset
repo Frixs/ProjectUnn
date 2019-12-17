@@ -17,5 +17,5 @@ MonoBehaviour:
   Name: CriticalDebuff
   Duration: 10
   Element: 3
-  MaxCritStacks: 5
-  PercentPerStack: 10
+  MaxCritStacks: 4
+  PercentPerStack: 3

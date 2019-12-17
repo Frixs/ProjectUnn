@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
     
     private void OnEnable()
     {
-        MaxHealth = 200;
+        MaxHealth = 50;
         Hp = MaxHealth;
         healthBar.SetHealth(this);
        

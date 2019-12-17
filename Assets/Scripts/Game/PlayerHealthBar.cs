@@ -9,7 +9,7 @@ public class PlayerHealthBar : MonoBehaviour
     private const float DAMAGED_FADE_TIMER_MAX = 1f;
     [SerializeField] private Image foreground;
     [SerializeField] private Image DamagedBar;
-    [SerializeField] private Text healthText;
+     public Text healthText;
     private float damageFadeTimer;
     private Color damagedColor;
     [SerializeField] private float positionOffset;
