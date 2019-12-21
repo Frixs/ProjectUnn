@@ -3,15 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Projectile
-  - ProjectileSpawn
-  - Arrow
-  - GameManager
-  - Debuff_Lightning
-  - Debuff_Fire
-  - Debuff_Water
-  - Debuff_Ice
+  tags: []
   layers:
   - Default
   - TransparentFX
