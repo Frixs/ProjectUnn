@@ -4334,7 +4334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentWave: 0
-  spawnPlane: {fileID: 0}
+  spawnPlane: {fileID: 2071691937}
   EnemyTypes:
   - {fileID: 2089073363735309642, guid: 76b2d4b955dc6c248b25119409203668, type: 3}
   - {fileID: 3730944238799431966, guid: cefa5d7767f1654469196ea3c0b24bde, type: 3}
@@ -5064,6 +5064,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022579874}
   m_CullTransparentMesh: 0
+--- !u!64 &2071691937 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 3171334042992387835, guid: bf2d5f376e521ed439c4ad45425b5847,
+    type: 3}
+  m_PrefabInstance: {fileID: 1764331971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &17542095913769518
 Transform:
   m_ObjectHideFlags: 0
