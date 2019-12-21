@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Handle Roll
     private float rollSpeed;
-    private bool isRolling = false;
+    public bool isRolling = false;
 
     public bool canMove = true;
 

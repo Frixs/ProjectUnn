@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(EnemyHealth))]
@@ -13,8 +14,13 @@ public class Enemy : MonoBehaviour
     public Dictionary<ArrowTypes, BaseStatusEffect> StatusEffects = new Dictionary<ArrowTypes, BaseStatusEffect>();
     public Dictionary<ArrowTypes, float> StatusEffectDurations = new Dictionary<ArrowTypes, float>();
     public List<ArrowTypes> RemoveList = new List<ArrowTypes>();
+    public float Speed;
+    private NavMeshAgent navmesh;
+    private Animator anim;
 
-    
+
+    private float attackSpeedTimer = float.MaxValue;
+    public float attackSpeed;
     private void Update()
     {
      
@@ -40,20 +46,61 @@ public class Enemy : MonoBehaviour
 
             //StatusEffects[item].OnRemoveEffect(GetComponent<EnemyHealth>().debuffSpawn);
             if (StatusEffects[item] is CritStatusEffect) CritStacks = 0;
+            if (StatusEffects[item] is SlowStatusEffect)
+            {
+                SlowStacks = 0;
+                UpdateSpeed(1);
+            }
             Debug.Log(StatusEffects[item].Name + " ended");
             StatusEffects.Remove(item);
 
 
         }
         RemoveList.Clear();
+        if (Vector3.Distance(transform.position, GameAssets.I.player.transform.position) > 3)
+        {
+            navmesh.isStopped = false;
+            navmesh.SetDestination(GameAssets.I.player.transform.position);
+            
+        }
+        else
+        {
+            navmesh.isStopped = true;
+            if (attackSpeedTimer > attackSpeed)
+            {
+                anim.Play("Unarmed-Attack-L1");
+                attackSpeedTimer = 0;
+              }
+            attackSpeedTimer += Time.deltaTime;
+        }
+        if (navmesh.velocity.magnitude > 0)
+        {
+            anim.SetBool("isMoving", true);
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
+        }
 
+    }
+    private void EnemyDamage()
+    {
+        if (GameAssets.I.player.GetComponent<PlayerMovement>().isRolling) return;
+        EnemyHealth e = GetComponent<EnemyHealth>();
+        GameAssets.I.player.GetComponent<PlayerHealth>().TakeDamage(e.stats.BaseDamage + (e.stats.DamagePerLevel * e.spawner.CurrentWave), false, Color.red);
 
     }
     private void Start()
     {
         player = GameAssets.I.player;
-
-
+        navmesh = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+        UpdateSpeed(1);
+    }
+    public void UpdateSpeed(float percent)
+    {
+  
+        navmesh.speed = Speed * percent;
     }
     public void OnCollisionEnter(Collision other)
     {
@@ -74,6 +121,7 @@ public class Enemy : MonoBehaviour
             else if (ase.Effect is SlowStatusEffect)
             {
                 SlowStacks = ase.Effect.OnHitEffect(SlowStacks);
+                UpdateSpeed((SlowStacks * (ase.Effect as SlowStatusEffect).PercentPerStack) / 100);
             }
             else
             {

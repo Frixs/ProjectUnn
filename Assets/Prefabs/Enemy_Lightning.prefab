@@ -7,26 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -5300606095135004170, guid: eb3ab5320e7326d4fa55eef0791206a1,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.8779979
-      objectReference: {fileID: 0}
-    - target: {fileID: -5300606095135004170, guid: eb3ab5320e7326d4fa55eef0791206a1,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.9296129
-      objectReference: {fileID: 0}
-    - target: {fileID: -5300606095135004170, guid: eb3ab5320e7326d4fa55eef0791206a1,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.788378
-      objectReference: {fileID: 0}
-    - target: {fileID: -5300606095135004170, guid: eb3ab5320e7326d4fa55eef0791206a1,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 0.0040564984
-      objectReference: {fileID: 0}
     - target: {fileID: 1493045426615745456, guid: eb3ab5320e7326d4fa55eef0791206a1,
         type: 3}
       propertyPath: m_Name
@@ -102,6 +82,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8673ddf800aa20e4c9641e9bb2eb7616,
         type: 2}
+    - target: {fileID: 2106804645, guid: eb3ab5320e7326d4fa55eef0791206a1, type: 3}
+      propertyPath: Speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5300606095135004170, guid: eb3ab5320e7326d4fa55eef0791206a1,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.8779979
+      objectReference: {fileID: 0}
+    - target: {fileID: -5300606095135004170, guid: eb3ab5320e7326d4fa55eef0791206a1,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.9296129
+      objectReference: {fileID: 0}
+    - target: {fileID: -5300606095135004170, guid: eb3ab5320e7326d4fa55eef0791206a1,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.788378
+      objectReference: {fileID: 0}
+    - target: {fileID: -5300606095135004170, guid: eb3ab5320e7326d4fa55eef0791206a1,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.0040564984
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: eb3ab5320e7326d4fa55eef0791206a1, type: 3}
