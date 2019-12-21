@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: NormalEnemy
   m_EditorClassIdentifier: 
   BaseHealth: 20
-  BaseDamage: 10
+  BaseDamage: 5
   HealthPerLevel: 20
-  DamagePerLevel: 10
+  DamagePerLevel: 5

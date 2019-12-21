@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: IceEnemy
   m_EditorClassIdentifier: 
   BaseHealth: 20
-  BaseDamage: 10
+  BaseDamage: 5
   HealthPerLevel: 10
-  DamagePerLevel: 5
+  DamagePerLevel: 3

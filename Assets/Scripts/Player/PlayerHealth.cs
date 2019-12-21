@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class PlayerHealth : MonoBehaviour
@@ -19,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
     
     private void OnEnable()
     {
-        MaxHealth = 50;
+        MaxHealth = 100;
         Hp = MaxHealth;
         healthBar.SetHealth(this);
        
@@ -41,8 +42,8 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged(Hp, MaxHealth, amount, isCrit, false, PopupColor); 
         if (Hp <= 0)
         {
-         
-           Destroy(this.gameObject); 
+
+            SceneManager.LoadScene("MainMenu");
         }
     }
     private void Update()

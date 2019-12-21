@@ -9,6 +9,7 @@ public class BaseStatusEffect : ScriptableObject
     public virtual event Action<int, bool, Color> DealDamage = delegate { };
     public GameObject DebuffIndicatorPrefab;
     public string Name;
+   
     public float Duration;
     public ArrowTypes Element;
     protected GameObject DebuffIndicator;
