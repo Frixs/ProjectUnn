@@ -49,7 +49,7 @@ public class WaveSpawner : MonoBehaviour
     {
         float delay = 1f;
         yield return new WaitForSeconds(delay);
-        GameObject enemy = Instantiate(GetRandomEnemyType(), GetRandomSpawn());
+        GameObject enemy = Instantiate(GetRandomEnemyType(), GetRandomPos(), Quaternion.identity);
         enemy.GetComponent<EnemyHealth>().spawner = this;
     }
     private Transform GetRandomSpawn()

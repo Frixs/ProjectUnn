@@ -43,10 +43,11 @@ public class EnemyHealth : MonoBehaviour
         if (Hp <= 0)
         {
             spawner.EndRound();
-            foreach (var s in GetComponent<Enemy>().StatusEffects)
+            
+          /*  foreach (var s in GetComponent<Enemy>().StatusEffects)
             {
                 s.Value.DealDamage -= GetComponent<EnemyHealth>().TakeDamage;
-            }
+            }*/
 
             Destroy(this.gameObject); 
         }

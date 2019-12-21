@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WaterEnemy
   m_EditorClassIdentifier: 
   BaseHealth: 25
-  BaseDamage: 10
-  HealthPerLevel: 25
-  DamagePerLevel: 10
+  BaseDamage: 3
+  HealthPerLevel: 20
+  DamagePerLevel: 3

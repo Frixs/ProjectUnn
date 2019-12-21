@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FireEnemy
   m_EditorClassIdentifier: 
   BaseHealth: 15
-  BaseDamage: 10
+  BaseDamage: 5
   HealthPerLevel: 15
-  DamagePerLevel: 10
+  DamagePerLevel: 5
